@@ -1,5 +1,6 @@
 /*
-Functional Objects  :   def1 -> objects of any class that supports operator()
+Functional Object is general term which can refer to functions as well as objects that support callable operator('()') 
+Functional Objects  :   def1 -> objects of any class that supports operator '()'
                     :   def2 -> the object to which a function pointer refers
 
 NOTE:
