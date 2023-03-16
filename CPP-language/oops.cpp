@@ -79,7 +79,7 @@ class C5 {
 
     public:
     C5(int a, int b){ //by default this is private too, so fo public for outside visibility
-        this->a = a; //this is pointer type
+        this->a = a; //this is pointer type //here this->a is referring to class variable a
         this->b = b;
     }
 
