@@ -4,17 +4,53 @@ using namespace std;
 class myVector{
     int capacity;
     int size;
-
-    public:
     int *arr;
 
     public:
+    //Default Constructor
+    myVector(){
+        size = 0;
+        this->capacity = 16;
+        arr = new int[capacity]; // new operator will return the address of array therefore directly can save in arr
+    }
+
+    //Overloaded Constructor
     myVector(int capacity){
         size = 0;
         this->capacity = capacity;
         arr = new int[capacity]; // new operator will return the address of array therefore directly can save in arr
     }
 
+    //Copy Constructor
+    myVector(const myVector &obj){
+        size = obj.size;
+        capacity = obj.capacity;
+
+        arr = new int[capacity];
+        
+        for(int i=0; i<size; i++){
+            arr[i] = obj.arr[i];
+        }
+
+    }
+
+    //Operator Overloading
+    int& operator[](int index){
+        return this->arr[index];
+    }
+
+    myVector& operator=(myVector obj){
+        size = obj.size;
+        capacity = obj.capacity;
+
+        for(int i=0; i<size; i++){
+            arr[i] = obj.arr[i];
+        }
+    
+        return *this;
+    }
+
+    //User Functions
     void push_back(int data){
 
         if(size==capacity){
@@ -54,8 +90,9 @@ class myVector{
             arr[i] = val;
         }
         else{
-            //check how to do it better
-            cout<<"Array Index out of bound";
+            //check how to do it better -> just print the msg and exit
+            cout << "Array index out of bound, exiting";
+            exit(0);
         }
     }
 
@@ -73,7 +110,11 @@ class myVector{
 
 int main(){
     int *vector;
+    //Default constructor
+    myVector obj1;
+    myVector obj2;
 
+    //Function Overloaded Constructor
     myVector obj(2);
 
     obj.push_back(1);
@@ -93,6 +134,7 @@ int main(){
     }
     cout<<"\n";
 
+    // get, set methods
     obj.set(3, 5);
 
     vector = obj.getVector();
@@ -101,5 +143,19 @@ int main(){
         cout<<vector[i]<<" ";
     }
     cout<<"\n";
+
+
+   //operator overloading []
+   cout<<obj[4]<<" ";
+   obj[4] = 10;
+   cout<<obj[4]<<" ";
+
+   obj2 = obj1 = obj;
+   cout<<"\n"<<obj1[6];
+   cout<<"\n"<<obj2[6];
+
+   //copy constructor
+   myVector vec(obj);
+   cout<<"\n"<<vec[6]<<" ";
 
 }
